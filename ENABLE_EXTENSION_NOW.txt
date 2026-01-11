@@ -1,0 +1,88 @@
+========================================
+URGENT: ENABLE POSTGRESQL EXTENSION
+========================================
+
+ERROR: "could not find driver"
+CAUSE: PostgreSQL extension is disabled in php.ini
+
+========================================
+EXACT STEPS TO FIX:
+========================================
+
+STEP 1: Open php.ini
+-------------------
+1. Press Windows Key + R
+2. Type: notepad
+3. Press Ctrl+Shift+Enter (Run as Administrator)
+4. Click "Yes" when prompted
+5. In Notepad: File → Open
+6. Navigate to: C:\xampp\php\
+7. Change file type to "All Files (*.*)"
+8. Select: php.ini
+9. Click Open
+
+STEP 2: Enable Extensions
+-------------------------
+1. Press Ctrl+F (Find)
+2. Type: extension=pdo_pgsql
+3. Click "Find Next"
+4. You'll see: ;extension=pdo_pgsql
+5. DELETE the semicolon (;) at the beginning
+6. It should now be: extension=pdo_pgsql
+7. Press Ctrl+F again
+8. Type: extension=pgsql
+9. Click "Find Next"
+10. You'll see: ;extension=pgsql
+11. DELETE the semicolon (;) at the beginning
+12. It should now be: extension=pgsql
+
+STEP 3: Save
+-----------
+1. Press Ctrl+S to save
+2. Close Notepad
+
+STEP 4: Restart Apache
+----------------------
+1. Open XAMPP Control Panel
+2. Find "Apache" in the list
+3. Click "Stop" button (if it's running)
+4. Wait 2 seconds
+5. Click "Start" button
+6. Apache should show "Running" in green
+
+STEP 5: Test
+-----------
+Open Command Prompt and run:
+cd "C:\Users\Raphael Fate Pagaran\Documents\Capstone\New folder (2)\sfs"
+php test_connection.php
+
+Should show: ✅ Successfully connected to Supabase!
+
+========================================
+VISUAL GUIDE:
+========================================
+
+BEFORE (in php.ini):
+;extension=pdo_pgsql
+;extension=pgsql
+
+AFTER (in php.ini):
+extension=pdo_pgsql
+extension=pgsql
+
+(Just remove the semicolons!)
+
+========================================
+IF STILL NOT WORKING:
+========================================
+
+1. Make sure you saved php.ini
+2. Make sure Apache is restarted
+3. Check if files exist:
+   C:\xampp\php\ext\php_pdo_pgsql.dll
+   C:\xampp\php\ext\php_pgsql.dll
+
+If files don't exist, you may need to download them.
+
+========================================
+
