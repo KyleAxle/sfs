@@ -70,6 +70,29 @@ try {
     });
   }
 
+  // Copy google-api-php-client directory (needed for Google OAuth)
+  if (fs.existsSync('google-api-php-client')) {
+    console.log('Copying google-api-php-client directory...');
+    // Copy the entire directory structure
+    function copyRecursive(src, dest) {
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+      }
+      const entries = fs.readdirSync(src, { withFileTypes: true });
+      for (const entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+        if (entry.isDirectory()) {
+          copyRecursive(srcPath, destPath);
+        } else {
+          fs.copyFileSync(srcPath, destPath);
+        }
+      }
+    }
+    copyRecursive('google-api-php-client', 'api/google-api-php-client');
+    console.log('✓ Copied google-api-php-client to api/');
+  }
+
   // Verify api directory has files
   const apiFiles = fs.readdirSync('api').filter(f => f.endsWith('.php'));
   console.log(`\nBuild complete! ${apiFiles.length} PHP files in api/ directory`);

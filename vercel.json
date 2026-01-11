@@ -22,6 +22,11 @@
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
-  ]
+  ],
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "@vercel/php@2.0.0"
+    }
+  }
 }
 
