@@ -44,4 +44,7 @@ desktop.ini
 *.bak
 *.old
 
+# DO NOT ignore api directory - it's needed for deployment
+!api/
+
 
