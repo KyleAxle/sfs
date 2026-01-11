@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
   "routes": [
     {
       "src": "/(.*\\.(html|css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
@@ -10,19 +11,19 @@
     },
     {
       "src": "/(.*\\.php)",
-      "dest": "/$1"
+      "dest": "/api/$1"
     },
     {
       "src": "/",
-      "dest": "/index.php"
+      "dest": "/api/index.php"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.php"
+      "dest": "/api/index.php"
     }
   ],
   "functions": {
-    "**/*.php": {
+    "api/**/*.php": {
       "runtime": "@vercel/php@2.0.0"
     }
   }

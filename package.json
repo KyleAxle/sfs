@@ -1,0 +1,8 @@
+{
+  "name": "sfs-appointment-system",
+  "version": "1.0.0",
+  "description": "Student/Faculty System - Appointment Management",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
