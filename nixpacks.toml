@@ -1,8 +1,11 @@
 [phases.setup]
-nixPkgs = ["php82"]
+nixPkgs = ["php82", "composer"]
 
 [phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader || true"]
+cmds = [
+  "cd google-api-php-client && composer install --no-dev --optimize-autoloader",
+  "composer install --no-dev --optimize-autoloader || true"
+]
 
 [start]
 cmd = "php -S 0.0.0.0:$PORT"
