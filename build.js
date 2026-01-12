@@ -93,6 +93,31 @@ try {
     console.log('✓ Copied google-api-php-client to api/');
   }
 
+  // Also copy supabase directory (for schema reference if needed)
+  if (fs.existsSync('supabase')) {
+    if (!fs.existsSync('api/supabase')) {
+      fs.mkdirSync('api/supabase', { recursive: true });
+    }
+    console.log('Copying supabase directory...');
+    function copyRecursive(src, dest) {
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+      }
+      const entries = fs.readdirSync(src, { withFileTypes: true });
+      for (const entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+        if (entry.isDirectory()) {
+          copyRecursive(srcPath, destPath);
+        } else {
+          fs.copyFileSync(srcPath, destPath);
+        }
+      }
+    }
+    copyRecursive('supabase', 'api/supabase');
+    console.log('✓ Copied supabase to api/');
+  }
+
   // Verify api directory has files
   const apiFiles = fs.readdirSync('api').filter(f => f.endsWith('.php'));
   console.log(`\nBuild complete! ${apiFiles.length} PHP files in api/ directory`);

@@ -113,15 +113,15 @@ USE_PHP_FALLBACK=false
 - Make sure to add these for **Production**, **Preview**, and **Development** environments
 - Never share your actual passwords/keys publicly
 
-### 4.3 Update Google OAuth Redirect URI
+### 4.3 Set Up Google OAuth (If Using Google Login)
 
-After deployment, you'll get a URL like: `https://your-project.vercel.app`
+**📚 Need detailed help?** See the complete beginner-friendly guide: **[GOOGLE_OAUTH_VERCEL_SETUP.md](./GOOGLE_OAUTH_VERCEL_SETUP.md)**
 
+**Quick steps:**
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Navigate to **APIs & Services** → **Credentials**
-3. Edit your OAuth 2.0 Client
-4. Add authorized redirect URI: `https://your-project.vercel.app/google_callback.php`
-5. Update the `GOOGLE_REDIRECT_URI` environment variable in Vercel
+2. Create OAuth 2.0 credentials (see detailed guide above)
+3. Add authorized redirect URI: `https://your-project.vercel.app/google_callback.php`
+4. Add the credentials to Vercel environment variables (see Step 4.2 above)
 
 ## Step 5: Redeploy After Adding Environment Variables
 
