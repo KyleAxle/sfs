@@ -1,10 +1,12 @@
 [phases.setup]
-nixPkgs = ["php82", "composer"]
+nixPkgs = ["php82", "curl"]
 
 [phases.install]
 cmds = [
-  "cd google-api-php-client && composer install --no-dev --optimize-autoloader",
-  "composer install --no-dev --optimize-autoloader || true"
+  "curl -sS https://getcomposer.org/installer | php",
+  "php composer.phar --version || true",
+  "cd google-api-php-client && php ../composer.phar install --no-dev --optimize-autoloader",
+  "php composer.phar install --no-dev --optimize-autoloader || true"
 ]
 
 [start]
